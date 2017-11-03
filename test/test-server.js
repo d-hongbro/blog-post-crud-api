@@ -43,7 +43,7 @@ describe('Blog Post tests', function() {
     // at the end of the test. The `chai.request(server).get...` call is asynchronous
     // and returns a Promise, so we just return it.
     return chai.request(app)
-      .get('/')
+      .get('/blog-posts')
       .then(function(res) {
         res.should.have.status(200);
         res.should.be.json;
@@ -68,16 +68,17 @@ describe('Blog Post tests', function() {
   it('should add blog post on POST', function() {
     const newItem = {title: 'test created', content: 'this is a test content', author: 'tester'};
     return chai.request(app)
-      .post('/')
+      .post('/blog-posts')
       .send(newItem)
       .then(function(res) {
         res.should.have.status(201);
         res.should.be.json;
         res.body.should.be.a('object');
-        res.body.should.include.keys('title', 'content', 'author');
+        res.body.should.include.keys('title', 'content', 'author', 'publishDate');
         res.body.id.should.not.be.null;
         // response should be deep equal to `newItem` from above if we assign
         // `id` to it from `res.body.id`
+        Object.assign(newItem, {publishDate: res.body.publishDate});
         res.body.should.deep.equal(Object.assign(newItem, {id: res.body.id}));
       });
   });
@@ -102,7 +103,7 @@ describe('Blog Post tests', function() {
 
     return chai.request(app)
       // first have to get so we have an idea of object to update
-      .get('/')
+      .get('/blog-posts')
       .then(function(res) {
         updateData.id = res.body[0].id;
         // this will return a promise whose value will be the response
@@ -111,7 +112,7 @@ describe('Blog Post tests', function() {
         // returning a promise and chaining with `then`, but we find
         // this approach cleaner and easier to read and reason about.
         return chai.request(app)
-          .put(`/${updateData.id}`)
+          .put(`/blog-posts/${updateData.id}`)
           .send(updateData);
       })
       // prove that the PUT request has right status code
@@ -128,10 +129,10 @@ describe('Blog Post tests', function() {
     return chai.request(app)
       // first have to get so we have an `id` of item
       // to delete
-      .get('/')
+      .get('/blog-posts')
       .then(function(res) {
         return chai.request(app)
-          .delete(`/${res.body[0].id}`);
+          .delete(`/blog-posts/${res.body[0].id}`);
       })
       .then(function(res) {
         res.should.have.status(204);
