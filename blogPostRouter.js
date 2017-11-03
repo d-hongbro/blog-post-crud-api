@@ -14,7 +14,7 @@ BlogPosts.create(
 	'David',
 	Date.now()
 );
-
+ 
 BlogPosts.create(
 	'this is blog post 2', 
 	'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu odio ultricies, lobortis metus ac, egestas sem. Pellentesque venenatis mauris.',

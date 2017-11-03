@@ -1,0 +1,9 @@
+language: node_js
+node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: NSGHVRCz+jwAc9fzv2aVRj7k3BVTf5NF5+9LSAjOja9j+iOyK1CrX5TI5KRWUwPQU/qfuxQMjL962K+t/DrQe6qz9D/V6rbOPEMO38rn0/BwSOYQhpP/LiQ6O7WKHCdfSJrn43Q/+Wv6/0gag3cXs0sheuyBsnk+eyelSK4QdJHyXFx6YGUb8WZDVeU1oC1TfI+bPpH0cDE96qVZLIVsoNj9M9ULAODOl0QB1GKgngYKMIoWnl0uymAtUIVPz68IjjtmMuSJEOjCA9GtVNME2qYdetFew769YCXhllDLfiVrE2JpjYUnMnlQOUPHv9O4LMq/+h9zf3jWtTg47TiPqBIXJv/zwzaeoDx9mnc32Z7IlZv4sl/kGQhE8nJnxmBoVwyzY1LQxi7EZ6AoBE1XgTHDAPcMLxiHQq+2KqAsH3azcPEy/9wJ59IEKKkVDz1llDk3alHLoW1kT6GsNolso02f5XSPyt9U8G8jOxRN0lQK7S8WOaiwtcYV+XJWHl1lXKRMv/J7cufKiLaZeCcgBF1VocrWn6VKeyx+zbZEdMhG74hw+JkXHCCQ/Q0mZlnsgGLLyvKNlv/7P3hOezPt6/q3he9XJOLDMC7WjJYDW9PxNsIWzrUkrLjh4iRD0YAge5jD6kyWE65MLLpvSysrROEdYEEK4smDn0G7JWeaBag=
+  app: salty-mesa-60082
+  on:
+    repo: d-hongbro/blog-post-crud-api
